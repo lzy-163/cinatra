@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v4
 
       - name: SetUp HomeBrew
         id: set-up-homebrew
@@ -43,7 +43,7 @@ jobs:
         run: ctest -C ${{matrix.mode}} -j -V
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with: 
           name: LastTest.log
