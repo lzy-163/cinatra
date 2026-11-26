@@ -28,7 +28,7 @@ jobs:
       - name: SetUp HomeBrew
         id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@master
-      
+
       - name: Install Dependencies
         run: HOMEBREW_NO_INSTALL_CLEANUP=1 HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1 brew install openssl protobuf
 
@@ -43,9 +43,9 @@ jobs:
         run: ctest -C ${{matrix.mode}} -j -V
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
-        with: 
-          name: LastTest.log
+        with:
+          name: LastTest.log-${{matrix.mode}}-${{matrix.ssl}}
           if-no-files-found: ignore
           path: ${{ github.workspace }}/build/Testing/Temporary/LastTest.log
